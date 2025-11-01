@@ -78,7 +78,7 @@ export const POST: APIRoute = async ({ request }) => {
       message,
     });
     if (telegramResult.status === 200) {
-      return new Response(null, {
+      return new Response("Success", {
         status: 200,
       });
     }
