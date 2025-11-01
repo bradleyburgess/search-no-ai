@@ -1,25 +1,27 @@
 ---
-import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
+import MainLayout from "@/layouts/main.astro";
+import Logo from "@/components/Logo.astro";
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+import Search from "@/components/Search.vue";
+import WhySection from "@/sections/why.astro";
+import HowSection from "@/sections/how.astro";
+import NbSection from "@/sections/nb.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+<MainLayout>
+  <div class="relative min-h-screen flex flex-col">
+    <Header />
+    <main class="w-full flex-1 flex flex-col justify-center items-center">
+      <Logo />
+      <Search client:load />
+    </main>
+  </div>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-</html>
+  <WhySection />
+  <HowSection />
+  <NbSection />
+
+  <Footer />
+</MainLayout>

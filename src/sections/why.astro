@@ -1,0 +1,40 @@
+---
+import Section from "@/components/Section.astro";
+---
+
+<Section id="why" heading="Why" count={1}>
+  <h3 class="text-xl">Why this exists</h3>
+  <p>
+    Google’s search experience has shifted: an AI-first “overview” often sits
+    between you and the web results you want, preferencing condensed answers and
+    generative summaries before the traditional list of links that you've come
+    to know and love.
+  </p>
+  <p>
+    For many users this is helpful; for others it’s friction. People who want to
+    see original web sources, do comparative searching, or quickly scan the web
+    results now face an extra layer that can — counterintiotively — slow you
+    down and obscure the source of information.
+  </p>
+  <p>
+    There are also much broader consequences with far-reaching and unconsidered
+    side effects. Generative AI results require additional server-side
+    computation every time they’re requested, which drastically increases the
+    energy and carbon footprint of a single search, compared with returning <a
+      href="https://en.wikipedia.org/wiki/Web_cache">cached</a
+    >, index-based web links.
+  </p>
+  <p>
+    When millions of searches are routed through AI pipelines by default, that
+    incremental cost adds up. This project isn’t an attack on progress — it’s a
+    response to a simple idea: users should be able to choose how they search,
+    and those who prefer the traditional, source-forward results should have an
+    easy, lightweight option.
+  </p>
+  <p>
+    There currently doesn't exist a way for users to disable “AI overview”; the
+    only way is to select the “Web” tab in Google, but by then it's too late.
+    This tool solves that problem by sending you to the Web tab immediately,
+    bypassing the AI overview entirely.
+  </p>
+</Section>

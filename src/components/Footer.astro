@@ -1,0 +1,19 @@
+---
+import ContactForm from "./ContactForm.vue";
+import InlineSeparator from "./InlineSeparator.astro";
+import { Button } from "./ui/button";
+---
+
+<footer
+  class="flex flex-col items-center gap-2 py-20 px-4 text-muted-foreground text-center text-sm"
+>
+  <p>Copyright © 2025. Bradley Burgess.</p>
+  <p>This site is not affiliated with Google LLC. No data is collected.</p>
+  <div class="flex justify-center items-center">
+    <Button asChild variant="link" class="text-muted-foreground" client:load>
+      <a href="https://github.com/bradleyburgess/search-no-ai">Source Code</a
+      ></Button
+    ><InlineSeparator />
+    <ContactForm client:load />
+  </div>
+</footer>

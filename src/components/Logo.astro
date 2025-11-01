@@ -1,0 +1,19 @@
+---
+import { Image } from "astro:assets";
+import LogoLight from "@/assets/images/logo-light.png";
+import LogoDark from "@/assets/images/logo-dark.png";
+---
+
+<div class="max-w-sm">
+  <Image src={LogoLight} alt="" class="only-light" />
+  <Image src={LogoDark} alt="" class="only-dark" />
+</div>
+<style>
+  html:not(.dark) .only-dark {
+    display: none;
+  }
+
+  html.dark .only-light {
+    display: none;
+  }
+</style>

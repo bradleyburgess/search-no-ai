@@ -1,0 +1,23 @@
+---
+const { id, heading, subheading, count } = Astro.props;
+const colors = [
+  { light: "bg-red-100", dark: "dark:bg-red-950" },
+  { light: "bg-emerald-100", dark: "dark:bg-emerald-950" },
+  { light: "bg-indigo-100", dark: "dark:bg-indigo-950" },
+];
+---
+
+<section
+  id={id}
+  class={`min-h-screen grid xl:grid-cols-[1fr_1fr] ${colors[count - 1].light} ${colors[count - 1].dark}`}
+>
+  <div class="py-48 flex justify-center items-center p-4">
+    <h2 class="text-9xl font-semibold">{heading}</h2>
+  </div>
+  <div class="xl:min-h-screen xl:my-20 flex flex-col justify-center items-center p-4">
+    <div class="pb-24 xl:p-20 prose prose-slate dark:prose-invert">
+      <h3 class="text-xl">{subheading}</h3>
+      <slot />
+    </div>
+  </div>
+</section>

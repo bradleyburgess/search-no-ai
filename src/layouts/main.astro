@@ -1,16 +1,61 @@
 ---
-import '../styles/global.css';
-const { content } = Astro.props;
+import "../styles/global.css";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{content.title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta property="og:title" content="Search 🚫 AI" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://search-no-ai.netlify.app" />
+    <meta
+      property="og:image"
+      content="https://search-no-ai.netflify.app/images/logo-light.png"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="twitter:title" content="Search 🚫 AI" />
+    <meta
+      name="twitter:description"
+      content="Search Google without AI overview"
+    />
+    <meta
+      name="twitter:image"
+      content="https://search-no-ai.netlify.app/images/logo-light.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="description" content="Search Google without AI" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Search No AI</title>
+  </head>
+
+  <body class="bg-slate-100 dark:bg-slate-950">
+    <slot />
+  </body>
 </html>
+
+<script is:inline>
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+</script>

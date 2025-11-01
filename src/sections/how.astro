@@ -1,0 +1,52 @@
+---
+import CopyToClipboard from "@/components/CopyToClipboard.vue";
+import Section from "@/components/Section.astro";
+
+const searchQuery = "https://www.google.com/search?q=%s&udm=14";
+---
+
+<Section id="how" heading="How" subheading="How it works" count={2}>
+  <p>
+    This tool doesn’t scrape Google or impersonate any service — it simply
+    redirects to the official Google search results page by using a “URL query
+    parameter” that opens the Web tab directly. Appending <code>&udm=14</code> to
+    a Google search URL forces the results page to land on the Web tab instead of
+    the AI-first overview in the All tab. This is what the URL looks like:
+  </p>
+  <p>
+    <code>https://www.google.com/search?q=your+query&udm=14</code>
+  </p>
+  <p>
+    When you click the search button on this page, you still go to Google and
+    use Google search infrastructure — you’re only changing which results tab is
+    shown first. By going straight to the Web tab, the AI overview is not
+    triggered, saving energy and giving you choice.
+  </p>
+
+  <h4>What else you can do</h4>
+  <p>
+    If you frequently perform Google searches by using the URL bar in your
+    browser, you can set your browser to use a different search engine, or to
+    use the same feature that this site uses: redirecting straight to the "Web"
+    tab.
+  </p>
+  <p>Here are instructions for the most popular browsers:</p>
+  <ul>
+    <li>
+      <a
+        href="https://support.google.com/chrome/answer/95426?hl=en&co=GENIE.Platform%3DDesktop"
+        >Google Chrome</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://support.mozilla.org/en-US/kb/change-your-default-search-settings-firefox"
+        >Mozilla Firefox</a
+      >
+    </li>
+  </ul>
+  <p>When it asks you to put in the search query, use this:</p>
+  <pre
+    class="overflow-auto max-w-xs md:max-w-full"><code>{searchQuery}</code></pre>
+  <CopyToClipboard textToCopy={searchQuery} client:load />
+</Section>
