@@ -19,6 +19,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from '@/components/ui/textarea'
 import { toTypedSchema } from "@vee-validate/zod";
 import { SendHorizontal } from 'lucide-vue-next';
@@ -36,10 +37,12 @@ type ContactFormValues = {
 
 const hasSubmitted = ref<boolean>(false);
 const errorMessage = ref<string | null>(null);
+const waiting = ref<boolean>(false);
 
 const formSchema = toTypedSchema(contactFormSchema);
 
 const onSubmit: SubmissionHandler<ContactFormValues> = async (values, actions) => {
+    waiting.value = true;
     const { name, email, subject, message } = values;
     const tokenResponse = await fetch('/api/form-token')
     const token = await await tokenResponse.json();
@@ -52,9 +55,11 @@ const onSubmit: SubmissionHandler<ContactFormValues> = async (values, actions) =
         hasSubmitted.value = true;
         errorMessage.value = null;
         actions.resetForm();
+        waiting.value = false;
         return;
     }
     errorMessage.value = contactResponseMessage.error;
+    waiting.value = false;
 }
 
 </script>
@@ -81,7 +86,8 @@ const onSubmit: SubmissionHandler<ContactFormValues> = async (values, actions) =
                             <FormItem>
                                 <FormLabel>Your Name</FormLabel>
                                 <FormControl>
-                                    <Input type="text" placeholder="I'm not a bot, promise" v-bind="componentField" />
+                                    <Input type="text" placeholder="I'm not a bot, promise" v-bind="componentField"
+                                        :disabled="waiting" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -90,7 +96,8 @@ const onSubmit: SubmissionHandler<ContactFormValues> = async (values, actions) =
                             <FormItem>
                                 <FormLabel>Your Email</FormLabel>
                                 <FormControl>
-                                    <Input type="text" placeholder="your@email.com" v-bind="componentField" />
+                                    <Input type="text" placeholder="your@email.com" v-bind="componentField"
+                                        :disabled="waiting" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -99,7 +106,8 @@ const onSubmit: SubmissionHandler<ContactFormValues> = async (values, actions) =
                             <FormItem>
                                 <FormLabel>Subject</FormLabel>
                                 <FormControl>
-                                    <Input type="text" placeholder="I have a question" v-bind="componentField" />
+                                    <Input type="text" placeholder="I have a question" v-bind="componentField"
+                                        :disabled="waiting" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -108,7 +116,8 @@ const onSubmit: SubmissionHandler<ContactFormValues> = async (values, actions) =
                             <FormItem>
                                 <FormLabel>Message</FormLabel>
                                 <FormControl>
-                                    <Textarea placeholder="…" v-bind="componentField" class="resize-none h-36" />
+                                    <Textarea placeholder="…" v-bind="componentField" class="resize-none h-36"
+                                        :disabled="waiting" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -123,8 +132,13 @@ const onSubmit: SubmissionHandler<ContactFormValues> = async (values, actions) =
                             Close
                         </Button>
                     </DialogClose>
-                    <Button v-if="!hasSubmitted" type="submit" form="dialogForm">
-                        <SendHorizontal /> Send
+                    <Button v-if="!hasSubmitted" type="submit" form="dialogForm" :disabled="waiting">
+                        <template v-if="waiting">
+                            <Spinner /> Sending…
+                        </template>
+                        <template v-else>
+                            <SendHorizontal /> Send
+                        </template>
                     </Button>
                     <Button v-else type="button" @click="hasSubmitted = false">
                         Send another
