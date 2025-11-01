@@ -5,8 +5,7 @@ import { DateTime } from "luxon";
 
 export const prerender = false;
 
-const { NODE_ENV, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, FORM_TOKEN } =
-  import.meta.env;
+const { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, FORM_TOKEN } = import.meta.env;
 
 interface ITelegramMessageProps {
   name: string;
@@ -62,10 +61,10 @@ const sendTelegramMessage = async ({
 export const POST: APIRoute = async ({ request }) => {
   const body = await request.json();
   const { token, name, email, subject, message } = body;
-  if (token != import.meta.env.FORM_TOKEN)
+  if (token != FORM_TOKEN)
     return new Response("Missing Token", { status: 401 });
   try {
-    const validationResult = contactFormSchema.parse({
+    contactFormSchema.parse({
       email,
       name,
       subject,
@@ -78,7 +77,7 @@ export const POST: APIRoute = async ({ request }) => {
       message,
     });
     if (telegramResult.status === 200) {
-      return new Response("Success", {
+      return new Response(JSON.stringify({ message: "Success" }), {
         status: 200,
       });
     }
