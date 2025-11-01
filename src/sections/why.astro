@@ -11,30 +11,33 @@ import Section from "@/components/Section.astro";
     to know and love.
   </p>
   <p>
-    For many users this is helpful; for others it’s friction. People who want to
-    see original web sources, do comparative searching, or quickly scan the web
-    results now face an extra layer that can — counterintiotively — slow you
-    down and obscure the source of information.
+    There are a number of reasons this is problematic. First, it is difficult to
+    know the sources of the information supplied by the AI overview. This makes
+    it harder to fact check and do comparative searching.
   </p>
   <p>
-    There are also much broader consequences with far-reaching and unconsidered
-    side effects. Generative AI results require additional server-side
-    computation every time they’re requested, which drastically increases the
-    energy and carbon footprint of a single search, compared with returning <a
-      href="https://en.wikipedia.org/wiki/Web_cache">cached</a
+    Second, there are much broader consequences with far-reaching and
+    unconsidered side effects. Generative AI results require a great deal of
+    additional server-side computation every time they’re requested, which
+    drastically increases the energy and carbon footprint of a single search,
+    compared with returning <a href="https://en.wikipedia.org/wiki/Web_cache"
+      >cached</a
     >, index-based web links.
   </p>
   <p>
-    When millions of searches are routed through AI pipelines by default, that
-    incremental cost adds up. This project isn’t an attack on progress — it’s a
-    response to a simple idea: users should be able to choose how they search,
-    and those who prefer the traditional, source-forward results should have an
-    easy, lightweight option.
+    When millions of searches are routed through the AI pipelines by default,
+    that incremental cost adds up very quickly.
   </p>
   <p>
     There currently doesn't exist a way for users to disable “AI overview”; the
     only way is to select the “Web” tab in Google, but by then it's too late.
     This tool solves that problem by sending you to the Web tab immediately,
     bypassing the AI overview entirely.
+  </p>
+  <p>
+    This project isn’t an attack on AI. It’s a response to this change,
+    representing two simple ideas: idea: (1) Users should be able to choose how
+    they search, and (2) AI shouldn't be opt-in by default, especially with no
+    way to opt out.
   </p>
 </Section>
