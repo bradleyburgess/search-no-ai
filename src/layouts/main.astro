@@ -1,33 +1,33 @@
 ---
 import "../styles/global.css";
+
+const title = "Search 🚫 AI";
+const description = "Search Google without AI overview";
+const image = "https://search-no-ai.netlify.app/images/search-no-ai-share.png";
 ---
 
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta property="og:title" content="Search 🚫 AI" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://search-no-ai.netlify.app" />
-    <meta
-      property="og:image"
-      content="https://search-no-ai.netlify.app/images/search-no-ai-share.png"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="twitter:title" content="Search 🚫 AI" />
-    <meta
-      name="twitter:description"
-      content="Search Google without AI overview"
-    />
-    <meta
-      name="twitter:image"
-      content="https://search-no-ai.netlify.app/images/search-no-ai-share.png"
-    />
+    <meta property="og:url" content={image} />
+    <meta property="og:image" content={image} />
+
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="description" content="Search Google without AI" />
+    <meta name="description" content={description} />
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search No AI</title>
   </head>
 
